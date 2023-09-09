@@ -1,0 +1,81 @@
+/* styles.css */
+
+.join-now {
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center align the content vertically */
+    position: fixed;
+}
+
+.join-now-info {
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 30%;
+    height: 35%;
+    background-color: rgba(33, 37, 41, 0.842); /* Semi-transparent background color */
+    position: fixed;
+    border-radius: 16px;
+    gap: 8px;
+}
+
+.join-now-info h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.join-now-info p {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+
+.picture-show {
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.picture-show img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    opacity: 0.4; /* Reduce image opacity to make them darker */
+}
+
+.home-sign-up {
+    margin-top: 8px;
+    width: 40%;
+    padding: 16px 32px;
+    background: #0babbb;
+    border: none;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.home-sign-up:hover {
+    background: #0babbb;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1830px) {
+    .join-now-info {
+        width: 80%;
+        height: 50%;
+    }   
+}
+    
