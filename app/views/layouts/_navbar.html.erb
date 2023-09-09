@@ -2,37 +2,39 @@
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
       <a class="navbar-brand" href="/">
+        <%= image_tag("Spotify_App_Logo.png", size: "64x64",style: "border-radius:30%;") %>
+      </a>
+      <a class="navbar-brand" href="/">
         <h3>Spoti-fejk</h3>
       </a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Member</a>
+            <a class="nav-link active" aria-current="page" href="#">Domača stran</a>
           </li>
+        <% if current_user%>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Courses</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Blog</a>
+            <a class="nav-link active" href="#">Moji playlisti</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Event</a>
+            <a class="nav-link active" aria-current="page" href="#">Išči</a>
           </li>
 
         </ul>
         <form class="">
-          <% if current_user%>
             <%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete, class:"btn btn-outline-primary mr-2"%>
+            <%= current_user.email %>
+            <%= image_tag current_user.avatar_url %>
           <% else %>
             <%= link_to "Login", new_user_session_path, class:"btn btn-outline-primary mr-2"%>
           <%end%>
         </form>
-
+        
       </div>
     </div>
   </nav>
