@@ -79,7 +79,16 @@
 @media only screen and (max-width: 1830px) {
     .join-now-info {
         width: 80%;
-        height: 50%;
-    }   
+        height: 60%;
+    } 
+    .join-now-info p {
+        font-size: 14px;
+    }  
+    .join-now-info {
+        gap: 0px;
+    }
+    .home-sign-up {
+        font-size: 14px;
+    }
 }
     

@@ -24,6 +24,8 @@ gem "bootstrap"
 gem "sassc-rails"
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'dotenv-rails', groups: [:development, :test]
+
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
