@@ -1,0 +1,18 @@
+databases:
+  - name: spoti-fejk
+    databaseName: spoti_fejk
+    user: spoti_fejk_user
+
+services:
+  - type: web
+    name: spoti-fejk-wb
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: spoti-fejk
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
