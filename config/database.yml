@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: spoti_fejk_production
   username: spoti_fejk
   password: <%= ENV["SPOTI_FEJK_DATABASE_PASSWORD"] %>
