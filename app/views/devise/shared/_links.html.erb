@@ -24,9 +24,8 @@
       url: omniauth_authorize_path(resource_name, provider),
       method: :post,
       data: { turbo: false } do |f| %> 
-       <%= f.submit "Sign in with the #{OmniAuth::Utils.camelize(provider)}", type: "image", src: url_for("/assets/btn_google_signin_light_normal_web.png") %>
+       <%= f.submit "Sign in with the #{OmniAuth::Utils.camelize(provider)}", type: "image", src: asset_path("/assets/btn_google_signin_light_normal_web.png") %>
     <% end %>
 
-    <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, data: { turbo_method: :post} %>
   <% end %>
 <% end %>
