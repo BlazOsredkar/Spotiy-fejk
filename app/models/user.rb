@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
+  
+  has_many :playlists
 
   def self.from_omniauth(auth)
     # Either create a User record or update it based on the provider (Google) and the UID

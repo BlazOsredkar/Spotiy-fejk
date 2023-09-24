@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :albums
+  resources :playlists
   devise_for :artists
   root 'pages#home'
   devise_for :users, controllers: {
