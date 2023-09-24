@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :songs
   resources :albums
   resources :playlists
   devise_for :artists
