@@ -26,6 +26,12 @@
     <%= form.text_field :length %>
   </div>
 
+  <strong>Audio:</strong>
+  <%= form.file_field :mp3, id: 'file-input', accept: 'audio/mpeg, audio/mp3' %>
+  <br>
+  <strong>Image:</strong>
+  <%= form.file_field :image, id: 'file-input'%>
+
   <div>
     <%= form.submit %>
   </div>
