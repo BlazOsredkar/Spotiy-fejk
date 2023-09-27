@@ -4,32 +4,42 @@
             <h2>Log into Spoti-fejk</h2>
         </div>
         <div class="custom-form-container">
-            <%- if devise_mapping.omniauthable? %>
-                  <%- resource_class.omniauth_providers.each do |provider| %>
-                    <% if provider == :google_oauth2 %>
-                      <%= form_for "Login",
-                        url: omniauth_authorize_path(resource_name, provider),
-                        method: :post,
-                        data: { turbo: false } do |f| %>
-                        <%= button_tag(type: 'submit', class: 'login-google') do %>
-                          <img src="<%= asset_path('btn_login_google.svg') %>" alt="Google Sign-In" />
-                          Continue with Google
-                        <% end %>
-                      <% end %>
-                    <% elsif provider == :facebook %>
-                      <%= form_for "Login",
-                        url: omniauth_authorize_path(resource_name, provider),
-                        method: :post,
-                        data: { turbo: false } do |f| %>
-                        <br>
-                        <%= button_tag(type: 'submit', class: 'login-google') do %>
-                          <img src="<%= asset_path('facebook.svg') %>" alt="Facebook Sign-In" class="login-icons" />
-                          Continue with Facebook
-                        <% end %>
-                      <% end %>
+            <% if devise_mapping.omniauthable? %>
+              <% resource_class.omniauth_providers.each do |provider| %>
+                <% if provider == :google_oauth2 %>
+                  <%= form_for "Login",
+                    url: omniauth_authorize_path(resource_name, provider),
+                    method: :post,
+                    data: { turbo: false } do |f| %>
+                    <%= button_tag(type: 'submit', class: 'login-google') do %>
+                      <img src="<%= asset_path('btn_login_google.svg') %>" alt="Google Sign-In" />
+                      Continue with Google
+                    <% end %>
+                  <% end %>
+                <% elsif provider == :facebook %>
+                  <%= form_for "Login",
+                    url: omniauth_authorize_path(resource_name, provider),
+                    method: :post,
+                    data: { turbo: false } do |f| %>
+                    <%= button_tag(type: 'submit', class: 'login-google') do %>
+                      <img src="<%= asset_path('facebook.svg') %>" alt="Facebook Sign-In" class="login-icons" />
+                      Continue with Facebook
+                    <% end %>
+                  <% end %>
+                <% elsif provider == :github %> <!-- Add this block for GitHub -->
+                  <%= form_for "Login",
+                    url: omniauth_authorize_path(resource_name, provider),
+                    method: :post,
+                    data: { turbo: false } do |f| %>
+                    <%= button_tag(type: 'submit', class: 'login-google') do %>
+                      <img src="<%= asset_path('github.svg') %>" alt="GitHub Sign-In" class="login-icons" />
+                      Continue with GitHub
                     <% end %>
                   <% end %>
                 <% end %>
+              <% end %>
+            <% end %>
+            
             <hr class="login-line">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                 <div class="custom-field">

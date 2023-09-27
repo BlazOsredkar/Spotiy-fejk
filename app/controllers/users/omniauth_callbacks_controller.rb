@@ -8,6 +8,22 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def twitter
   # end
 
+  def github
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+
+    if @user.persisted?
+      sign_in_and_redirect @user, event: :authentication
+    else
+      session["devise.github_data"] = request.env["omniauth.auth"]
+      existing_provider = @user.provider if @user.present?
+      if existing_provider.present?
+        redirect_to new_user_session_path, notice: "You already have a login with another provider"
+      else
+        redirect_to new_user_session_path, notice: "error."
+      end
+    end
+  end
+
   def facebook
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @user = User.from_omniauth(request.env["omniauth.auth"])
@@ -17,12 +33,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: "Facebook") if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"].except(:extra) # Removing extra as it can overflow some session stores
-      redirect_to new_user_registration_url
+      existing_provider = @user.provider if @user.present?
+      if existing_provider.present?
+        redirect_to new_user_session_path, notice: "You already have a login with another provider"
+      else
+        redirect_to new_user_session_path, notice: "error."
+      end
     end
   end
 
   def failure
-    redirect_to root_path
+    redirect_to new_user_session_path, notice: "You already have a login with another provider."
   end
 
 
@@ -35,7 +56,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect user, event: :authentication
     else
       flash[:alert] = "Error signing in via Google. Please try again."
-      redirect_to new_user_session_path
+      existing_provider = @user.provider if @user.present?
+      if existing_provider.present?
+        redirect_to new_user_session_path, notice: "You already have a login with another provider (#{existing_provider})."
+      else
+        redirect_to new_user_session_path, notice: "error."
+      end
     end
   end
 

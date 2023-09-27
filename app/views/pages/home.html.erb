@@ -1,24 +1,28 @@
+
+
+<% if current_user %>
+    <p>test</p>
+<% else %>
 <%= render partial='layouts/navbar'%>
+    <div class="join-now">
+        <div class="join-now-info">
+            <%= image_tag("Spotify_App_Logo.png", size: "96x96", style: "border-radius: 30%;") %>
+            <br>
+            <h1>Join now!</h1>
+            <p>Listen to tons of songs for free</p>
+            <p>Search for any song, artist, album or playlist</p>
+            <p>Make your own playlists</p>
+            <p>Easy to use, no extra fees required</p>
+            <%= link_to 'Sign up', new_user_registration_path, class: 'home-sign-up' %>
+        </div>
+    </div>    
 
-
-<div class="join-now">
-    <div class="join-now-info">
-        <%= image_tag("Spotify_App_Logo.png", size: "96x96", style: "border-radius: 30%;") %>
-        <br>
-        <h1>Join now!</h1>
-        <p>Listen to tons of songs for free</p>
-        <p>Search for any song, artist, album or playlist</p>
-        <p>Make your own playlists</p>
-        <p>Easy to use, no extra fees required</p>
-        <%= link_to 'Sign up', new_user_registration_path, class: 'home-sign-up' %>
+    <div class="picture-show">
+        <%= image_tag("first.png") %>
+        <%= image_tag("second.png") %>
+        <%= image_tag("third.png") %>
+        <%= image_tag("forth.png") %>
     </div>
-</div>    
-
-<div class="picture-show">
-    <%= image_tag("first.png") %>
-    <%= image_tag("second.png") %>
-    <%= image_tag("third.png") %>
-    <%= image_tag("forth.png") %>
-</div>
+<% end %>
 
 <%= render partial='layouts/footer'%>

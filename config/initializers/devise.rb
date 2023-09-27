@@ -30,6 +30,7 @@ Devise.setup do |config|
                   ENV['GOOGLE_CLIENT_SECRET']
   
   config.omniauth :facebook, ENV['FACEBOOK_CLIENT_ID'], ENV['FACEBOOK_CLIENT_SECRET'], token_params: { parse: :json }
+  config.omniauth :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_CLIENT_SECRET'], scope: 'user:email'
 
 
 
