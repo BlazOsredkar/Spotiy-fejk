@@ -11,4 +11,6 @@
   <% end %>
 </div>
 
-<%= link_to "New song", new_song_path %>
+<% if current_user.is_artist%>
+  <%= link_to "New song", new_song_path %>
+<% end %>

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :songs
   resources :albums
   resources :playlists
-  devise_for :artists
   root 'pages#home'
   devise_for :users, controllers: {
     registrations: 'users/registrations',

@@ -26,6 +26,10 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'ruby-mp3info'
+gem 'activeadmin'
+
+
 
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]

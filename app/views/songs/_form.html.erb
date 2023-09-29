@@ -21,10 +21,6 @@
     <%= form.text_field :description %>
   </div>
 
-  <div>
-    <%= form.label :length, style: "display: block" %>
-    <%= form.text_field :length %>
-  </div>
 
   <strong>Audio:</strong>
   <%= form.file_field :mp3, id: 'file-input', accept: 'audio/mpeg, audio/mp3' %>
@@ -32,6 +28,7 @@
   <strong>Image:</strong>
   <%= form.file_field :image, id: 'file-input'%>
 
+  <%= form.hidden_field :user_id, value: song.user_id %>
   <div>
     <%= form.submit %>
   </div>

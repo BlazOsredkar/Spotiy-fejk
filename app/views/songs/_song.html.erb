@@ -10,9 +10,10 @@
   </p>
 
   <p>
-    <strong>Length:</strong>
-    <%= song.length %>
+    <strong>Author:</strong>
+    <%= song.user.full_name %>
   </p>
+
 
   <audio controls>
     <source src="<%= url_for(song.mp3) %>" type="audio/mpeg">
