@@ -6,6 +6,15 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Spoti Fejk"
 
+
+  #add a user profile and logout button
+  config.namespace :admin do |admin|
+    admin.build_menu :utility_navigation do |menu|
+      admin.add_current_user_to_menu  menu
+      menu.add label: 'Exit', url: '/', html_options: { class: 'custom-button-admin-panel' }
+    end
+  end
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
@@ -217,7 +226,9 @@ ActiveAdmin.setup do |config|
   # resources or you can enable them globally from here.
   #
   # config.create_another = true
-  config.register_stylesheet 'active_admin.scss'
+  meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
+  config.meta_tags = meta_tags_options
+  config.meta_tags_for_logged_out_pages = meta_tags_options
 
 
   # == Register Stylesheets & Javascripts

@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :playlists
 
   def self.ransackable_attributes(auth_object = nil)
-    ["avatar_url", "created_at", "email", "full_name", "id", "is_admin", "is_artist", "provider", "remember_created_at", "reset_password_token", "uid"]
+    ["avatar_url", "created_at", "email", "full_name", "id", "is_admin", "is_artist", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "uid"]
   end
 
   def self.ransackable_associations(auth_object = nil)
