@@ -7,6 +7,14 @@ class User < ApplicationRecord
   
   has_many :playlists
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["avatar_url", "created_at", "email", "full_name", "id", "is_admin", "is_artist", "provider", "remember_created_at", "reset_password_token", "uid"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["playlists"]
+  end
+
   def self.from_omniauth(auth)
     # Either create a User record or update it based on the provider (Google) and the UID
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
