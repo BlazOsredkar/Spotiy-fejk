@@ -54,12 +54,16 @@ class SongsController < ApplicationController
   # PATCH/PUT /songs/1 or /songs/1.json
   def update
     respond_to do |format|
-      if @song.update(song_params)
-        format.html { redirect_to song_url(@song), notice: "Song was successfully updated." }
-        format.json { render :show, status: :ok, location: @song }
+      if current_user == @song.user
+        if @song.update(song_params)
+          format.html { redirect_to song_url(@song), notice: "Song was successfully updated." }
+          format.json { render :show, status: :ok, location: @song }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @song.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
+        redirect_to root_path, notice:"Only Song creator can do that."
       end
     end
   end
