@@ -10,50 +10,72 @@ class AlbumsController < ApplicationController
   def show
   end
 
+  def update_foreign_key_references
+    Song.where(album_id: @album.id).update_all(album_id: nil)
+  end
+
   # GET /albums/new
   def new
-    @album = Album.new
+    if current_user.is_artist
+      @album = Album.new
+    else
+      redirect_to root_path, notice: "Only Artists can do that."
+    end
   end
 
   # GET /albums/1/edit
   def edit
+    if current_user == @album.user_id
+    else
+      redirect_to albums_path, notice:"Only the owner can do that."
+    end
   end
 
   # POST /albums or /albums.json
   def create
-    @album = Album.new(album_params)
-
-    respond_to do |format|
+    if current_user.is_artist
+      @album = Album.new(album_params)
       if @album.save
-        format.html { redirect_to album_url(@album), notice: "Album was successfully created." }
-        format.json { render :show, status: :created, location: @album }
+        current_user.albums << @album  # Associates the album with the current user
+        redirect_to @album, notice: 'Album was successfully created.'
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+        render :new
       end
+    else
+      redirect_to root_path, notice: "Only Artists can do that."
     end
   end
+
 
   # PATCH/PUT /albums/1 or /albums/1.json
   def update
     respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to album_url(@album), notice: "Album was successfully updated." }
-        format.json { render :show, status: :ok, location: @album }
+      if current_user == @album.user
+        if @album.update(album_params)
+          format.html { redirect_to album_url(@album), notice: "Album was successfully updated." }
+          format.json { render :show, status: :ok, location: @album }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @album.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+        redirect_to albums_path, notice:"Only the owner can do that."
       end
     end
   end
 
   # DELETE /albums/1 or /albums/1.json
   def destroy
-    @album.destroy
+    if current_user == @album.user_id
+      update_foreign_key_references
+      @album.destroy
 
-    respond_to do |format|
-      format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to albums_path, notice:"Only the owner can do that."
     end
   end
 
@@ -65,6 +87,6 @@ class AlbumsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def album_params
-      params.require(:album).permit(:name, :description, :year)
+      params.require(:album).permit(:name, :description, :year, :user_id)
     end
 end

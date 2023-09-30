@@ -29,6 +29,12 @@
   <%= form.file_field :image, id: 'file-input'%>
 
   <%= form.hidden_field :user_id, value: song.user_id %>
+
+  <div>
+    <%= form.label :album_id, style: "display: block" %>
+    <%= form.collection_select :album_id, Album.all, :id, :name %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

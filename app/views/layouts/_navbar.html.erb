@@ -21,7 +21,7 @@
               <a class="nav-link active" href="#">Moji playlisti</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Išči</a>
+              <%= link_to "Albums", albums_path, class: "nav-link active", style:"margin-right:8px;" %>
             </li>
             <% if current_user.is_admin? %>
               <li class="nav-item">

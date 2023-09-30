@@ -4,6 +4,8 @@ require 'mp3info'
 class SongsController < ApplicationController
   before_action :set_song, only: %i[ show edit update destroy ]
 
+
+
   # GET /songs or /songs.json
   def index
     @songs = Song.all
@@ -26,6 +28,10 @@ class SongsController < ApplicationController
 
   # GET /songs/1/edit
   def edit
+    if current_user == @song.user
+    else
+      redirect_to songs_path, notice:"Only the owner can do that."
+    end
   end
 
   # POST /songs or /songs.json
@@ -90,6 +96,6 @@ class SongsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def song_params
-      params.require(:song).permit(:name, :description, :length, :mp3, :image, :user_id)
+      params.require(:song).permit(:name, :description, :length, :mp3, :image, :user_id, :album_id)
     end
 end

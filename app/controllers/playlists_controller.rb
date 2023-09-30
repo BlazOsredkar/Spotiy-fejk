@@ -22,15 +22,11 @@ class PlaylistsController < ApplicationController
   # POST /playlists or /playlists.json
   def create
     @playlist = Playlist.new(playlist_params)
-    @playlist.user = current_user
-    respond_to do |format|
-      if @playlist.save
-        format.html { redirect_to playlist_url(@playlist), notice: "Playlist was successfully created." }
-        format.json { render :show, status: :created, location: @playlist }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
+    if @playlist.save
+      current_user.playlists << @playlist  # Associates the playlist with the current user
+      redirect_to @playlist, notice: 'Playlist was successfully created.'
+    else
+      render :new
     end
   end
 
