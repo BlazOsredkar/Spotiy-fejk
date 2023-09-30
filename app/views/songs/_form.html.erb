@@ -32,7 +32,7 @@
 
   <div>
     <%= form.label :album_id, style: "display: block" %>
-    <%= form.collection_select :album_id, Album.all, :id, :name %>
+    <%= form.collection_select :album_id, Album.all, :id, :name, prompt: "Brez albuma" %>
   </div>
 
   <div>
