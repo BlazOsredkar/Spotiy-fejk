@@ -9,3 +9,5 @@
     <%= button_to "Destroy this song", @song, method: :delete %>
   <% end %>
 </div>
+
+<%= link_to 'Add to Playlist', add_to_playlist_song_path(@song) %>

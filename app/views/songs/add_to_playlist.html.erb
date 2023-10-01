@@ -1,0 +1,10 @@
+<%= form_for @song, url: create_playlist_song_song_path(@song), method: :post do |f| %>
+  <div class="field">
+    <%= f.label 'Select Playlist' %>
+    <%= f.collection_select(:playlist_ids, @playlists, :id, :name, {}, { multiple: true, required: true }) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Add to Playlist' %>
+  </div>
+<% end %>

@@ -5,6 +5,34 @@ class SongsController < ApplicationController
   before_action :set_song, only: %i[ show edit update destroy ]
 
 
+  def add_to_playlist
+    @song = Song.find(params[:id])
+    @playlists = Playlist.where(user_id: current_user.id)
+  end
+
+  def create_playlist_song
+    @song = Song.find(params[:id])
+    selected_playlist_ids = Array(params[:song][:playlist_ids]).reject(&:empty?)
+    
+    if selected_playlist_ids.empty?
+      redirect_to add_to_playlist_song_path(@song), alert: 'Please select at least one playlist.'
+    else
+      selected_playlist_ids.each do |playlist_id|
+        playlist = Playlist.find(playlist_id)
+        position = playlist.songs.count + 1
+        playlist.playlist_songs.create(song: @song, position: position)
+      end
+    
+      redirect_to @song, notice: 'Song added to playlist(s) successfully.'
+    end
+  end
+
+
+
+
+
+
+
 
   # GET /songs or /songs.json
   def index

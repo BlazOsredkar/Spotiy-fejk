@@ -18,7 +18,7 @@
             <a class="nav-link active" aria-current="page" href="/songs">Songs</a>
           </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Moji playlisti</a>
+              <%= link_to "My playlists", playlists_path, class: "nav-link active", style:"margin-right:8px;" %>
             </li>
             <li class="nav-item">
               <%= link_to "Albums", albums_path, class: "nav-link active", style:"margin-right:8px;" %>

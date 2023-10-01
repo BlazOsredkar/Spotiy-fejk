@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  resources :songs
+  resources :songs do
+    get 'add_to_playlist', on: :member
+    post 'create_playlist_song', on: :member
+  end
   resources :albums
   resources :playlists
   root 'pages#home'

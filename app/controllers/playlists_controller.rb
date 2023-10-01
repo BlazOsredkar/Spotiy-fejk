@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
 
   # GET /playlists or /playlists.json
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.where(user_id: current_user.id)
   end
 
   # GET /playlists/1 or /playlists/1.json
@@ -22,8 +22,8 @@ class PlaylistsController < ApplicationController
   # POST /playlists or /playlists.json
   def create
     @playlist = Playlist.new(playlist_params)
+    @playlist.user_id = current_user.id
     if @playlist.save
-      current_user.playlists << @playlist  # Associates the playlist with the current user
       redirect_to @playlist, notice: 'Playlist was successfully created.'
     else
       render :new

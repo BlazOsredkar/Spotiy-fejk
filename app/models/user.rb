@@ -7,7 +7,6 @@ class User < ApplicationRecord
   
   has_many :playlists
   has_and_belongs_to_many :albums, join_table: :albums_artists
-  has_and_belongs_to_many :playlists, join_table: :playlists_users
 
   def self.ransackable_attributes(auth_object = nil)
     ["avatar_url", "created_at", "email", "full_name", "id", "is_admin", "is_artist", "provider", "remember_created_at", "reset_password_sent_at", "reset_password_token", "uid"]
