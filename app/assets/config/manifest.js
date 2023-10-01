@@ -5,3 +5,4 @@
 //= link favicon/browserconfig.xml
 
 //= link favicon/site.webmanifest
+//= link audio-player.js

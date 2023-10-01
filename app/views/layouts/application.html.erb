@@ -12,14 +12,21 @@
   </head>
 
   <body>
+  
     <% if user_signed_in? %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include your audio player component -->
+    <%= javascript_include_tag 'audio-player' %>
     <%= render partial='layouts/navbar'%>
     <div class="main-content-container">
         <main class="container main-content">
           <%= yield %>
         </main>
     </div>
-    <%= render partial='layouts/footer'%>
+    <div class="footer-player">
+      <span id="current-song-name"></span>
+      <audio controls id="audio-player"></audio>
+    </div>
     <% else %>
       <%= yield %>
     <% end %>

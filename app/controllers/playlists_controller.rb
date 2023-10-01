@@ -53,6 +53,25 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def remove_from_playlist
+    @playlist = Playlist.find(params[:playlist_id])
+    @song = Song.find(params[:song_id])
+
+    # Find the position of the song being removed
+    position_to_remove = @playlist.playlist_songs.find_by(song_id: @song.id).position
+
+    # Remove the song from the playlist
+    @playlist.songs.delete(@song)
+
+    # Update the positions of the remaining songs
+    @playlist.songs.where('playlists_songs.position > ?', position_to_remove).each do |song|
+      current_position = song.playlist_songs.find_by(playlist: @playlist).position
+      song.playlist_songs.find_by(playlist: @playlist).update(position: current_position - 1)
+    end
+
+    redirect_to playlist_path(@playlist), notice: 'Song removed from playlist successfully.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist
