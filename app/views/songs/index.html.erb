@@ -3,6 +3,11 @@
 <h1>Songs</h1>
 
 <div id="songs">
+  <%= form_tag(songs_path, method: "get", class: "form-inline mb-2") do %>
+    <%= text_field_tag(:search, params[:search], class: "form-control mr-sm-2", placeholder: "Search songs") %>
+    <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0") %>
+  <% end %>
+
   <% @songs.each do |song| %>
     <%= render song %>
     <p>
@@ -11,6 +16,6 @@
   <% end %>
 </div>
 
-<% if current_user.is_artist%>
+<% if current_user.is_artist %>
   <%= link_to "New song", new_song_path %>
 <% end %>

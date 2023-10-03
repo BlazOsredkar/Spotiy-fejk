@@ -1,28 +1,16 @@
-<div id="<%= dom_id song %>">
-  <a href="#" class="song-link" data-song-id="<%= song.id %>">
-    <%= song.name %>
-  </a>
-  <p>
-    <strong>Name:</strong>
-    <%= song.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= song.description %>
-  </p>
-
-  <p>
-    <strong>Author:</strong>
-    <%= song.user.full_name %>
-  </p>
 
 
-
-  <p>
-    <strong>Image:</strong>
-    <%= image_tag url_for(song.image) %>
-  </p>
-
-
+<div id="<%= dom_id song %>" class="row mb-3">
+  <div class="col-md-3">
+    <%= image_tag url_for(song.image), class: "img-fluid-song" %>
+  </div>
+  <div class="col-md-6">
+    <h5><%= song.name %></h5>
+    <p><strong>Author:</strong> <%= song.user.full_name %></p>
+  </div>
+  <div class="col-md-3">
+    <a href="#" class="song-link" data-song-id="<%= song.id %>">
+      <h5 class="card-title"><%= song.name %></h5>
+    </a>  
+  </div>
 </div>

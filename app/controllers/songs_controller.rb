@@ -36,7 +36,11 @@ class SongsController < ApplicationController
 
   # GET /songs or /songs.json
   def index
-    @songs = Song.all
+    if params[:search]
+      @songs = Song.search(params[:search])
+    else
+      @songs = Song.all
+    end
   end
 
   # GET /songs/1 or /songs/1.json
