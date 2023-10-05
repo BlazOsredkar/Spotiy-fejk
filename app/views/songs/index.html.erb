@@ -4,15 +4,35 @@
 
 <div id="songs">
   <%= form_tag(songs_path, method: "get", class: "form-inline mb-2") do %>
-    <%= text_field_tag(:search, params[:search], class: "form-control mr-sm-2", placeholder: "Search songs") %>
-    <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0") %>
+    <div class="input-group">
+      <%= text_field_tag(:search, params[:search], class: "form-control", placeholder: "Search songs") %>
+      <div class="input-group-append">
+        <%= submit_tag("Search", class: "btn btn-outline-success") %>
+      </div>
+    </div>
   <% end %>
 
   <% @songs.each do |song| %>
-    <%= render song %>
-    <p>
-      <%= link_to "Show this song", song %>
-    </p>
+  <div id="<%= dom_id song %>" class="row mb-3">
+    <% if song.image %>
+      <div class="col-md-3">
+        <%= image_tag url_for(song.image), class: "img-fluid-song" %>
+      </div>
+    <% end %>
+    <% if song.name %>
+      <div class="col-md-6">
+        <h5><%= link_to song.name, song %></h5>
+        <p><strong>Author:</strong> <%= song.user.full_name %></p>
+      </div>
+    <% end %>
+    <div class="col-md-3">
+      <a href="#" class="song-link btn btn-outline-primary mr-2" data-song-id="<%= song.id %>">
+        <h5 class="card-title">Play</h5>
+      </a>
+
+
+    </div>
+  </div>
   <% end %>
 </div>
 
