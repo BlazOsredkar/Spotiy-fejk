@@ -8,12 +8,11 @@
     <li>
       <%= song.name %>
       <%= button_to 'Remove from Playlist', remove_from_playlist_path(playlist_id: @playlist.id, song_id: song.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= button_to 'Play', play_song_path(song), remote: true, class: 'play-song-btn', data: { song_id: song.id } %>
+
     </li>
   <% end %>
 </ul>
 
-<%= button_to 'Play All', play_playlist_path(@playlist), remote: true, class: 'play-all-btn', data: { playlist_id: @playlist.id } %>
 
 <div>
   <%= link_to "Edit this playlist", edit_playlist_path(@playlist) %> |
