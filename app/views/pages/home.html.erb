@@ -1,7 +1,7 @@
 
 
 <% if current_user %>
-<%= form_tag(@home_path, method: "get", class: "form-inline mb-2") do %>
+<%= form_tag(root_path, method: "get", class: "form-inline mb-2") do %>
   <div class="input-group">
     <%= text_field_tag(:search, params[:search], class: "form-control", placeholder: "Search songs, albums, and artists") %>
     <div class="input-group-append">
@@ -95,7 +95,7 @@
     <p>No results found for your search.</p>
   <% end %>
 <% else %>
-  <%= form_tag(home_path, method: "get", class: "form-inline mb-2") do %>
+  <%= form_tag(@home_path, method: "get", class: "form-inline mb-2") do %>
     <%= text_field_tag(:search, params[:search], class: "form-control mr-sm-2", placeholder: "Search songs, albums, and artists") %>
     <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0") %>
   <% end %>

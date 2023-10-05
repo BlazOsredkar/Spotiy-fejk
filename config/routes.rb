@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete 'playlists/:playlist_id/remove_song/:song_id', to: 'playlists#remove_from_playlist', as: :remove_from_playlist
   resources :albums
   resources :playlists
-  root 'home#home'
+  root 'pages#home'
   resources :users, only: [:show]
   devise_for :users, controllers: {
     registrations: 'users/registrations',

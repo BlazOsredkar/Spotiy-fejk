@@ -1,0 +1,14 @@
+<!-- app/views/users/show.html.erb -->
+
+<div class="container mt-5">
+  <h1>User Profile</h1>
+  
+  <div class="card mt-3">
+    <div class="card-body">
+    <%= image_tag(@user.avatar_url, style: "height:32px; width:32px; border-radius:50%;") %>
+      <h5 class="card-title"><%= @user.full_name %></h5>
+      <p class="card-text"><strong>Email:</strong> <%= @user.email %></p>
+    </div>
+  </div>
+
+</div>
