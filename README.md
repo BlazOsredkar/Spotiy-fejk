@@ -13,14 +13,14 @@ App home: https://www.spoti-fejk.vrtogo.si/
    
 
 ## Getting Started
-### Setup
+### 🖥️ Setup
 
 Install gems
 ```
 bundle install
 ```
 
-### ENV Variables
+### 🔐 ENV Variables
 Create `.env` file
 ```
 touch .env
@@ -40,19 +40,19 @@ GITHUB_CLIENT_ID:
 GITHUB_CLIENT_SECRET:
 ```
 
-### DB Setup
+### 📊 DB Setup
 ```
 rails db:create
 rails db:migrate
 rails db:seed
 ```
 
-### Run a server
+### 🎈 Run a server
 ```
 rails s
 ```
 
-## Built With
+## ⛏️ Built With
 - [Rails 7](https://guides.rubyonrails.org/) - Backend / Front-end
 - [Render](https://render.com/) - Deployment
 - [PostgreSQL](https://www.postgresql.org/) - Database
