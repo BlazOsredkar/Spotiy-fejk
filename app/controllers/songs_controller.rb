@@ -56,7 +56,7 @@ class SongsController < ApplicationController
       @song = @playlist.songs.find(params[:song_id]) rescue nil
       @next_song = @playlist.songs.find_by('playlists_songs.position > ?', @song.playlist_songs.find_by(playlist: @playlist).position) rescue nil if @song
       unless @next_song
-        @next_song = @playlist.songs.first
+        @next_song = @playlist.songs.order('playlists_songs.position').first
       end
     else
       @song = Song.find(params[:song_id]) rescue nil
