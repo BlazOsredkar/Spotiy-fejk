@@ -1,14 +1,14 @@
-<div id="<%= dom_id song %>" class="row mb-3">
-  <div class="col-md-3">
-    <%= image_tag url_for(song.image), class: "img-fluid-song" %>
-  </div>
-  <div class="col-md-6">
-    <h5><%= song.name %></h5>
-    <p><strong>Author:</strong> <%= song.user.full_name %></p>
-  </div>
-  <div class="col-md-3">
-    <a href="#" class="song-link" data-song-id="<%= song.id %>">
-      <h5 class="card-title"><%= song.name %></h5>
-    </a>
-  </div>
-</div>
+<ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="mr-auto">
+          <%= image_tag url_for(@song.image), class: "img-fluid-song", style:"width:32px !important; height:32px !important;" %>
+          <%= @song.name %>, by
+          <%= @song.user.full_name %>
+        </div>
+        <div class="ml-2 inline-buttons">
+        <a href="#" class="song-link btn btn-outline-primary ml-2" data-song-id="<%= @song.id %>">
+          <h5 class="card-title">Play</h5>
+        </a>
+        </div>
+      </li>
+</ul>

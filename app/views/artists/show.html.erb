@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <h1><%= @user.full_name %></h1>
+  
+  <div class="mb-3">
+    <%= image_tag @user.avatar_url, class: "img-fluid rounded-circle", alt: "Artist Avatar" %>
+  </div>
+
+  <h2>Songs by <%= @user.full_name %>:</h2>
+
+  <% @user.songs.each do |song| %>
+    <li id="<%= dom_id song %>" class="list-group-item mb-3" style="margin-bottom: auto !important;">
+        <div class="row">
+          <% if song.image.present? %>
+            <div class="col-md-3">
+              <%= image_tag url_for(song.image), class: "img-fluid-song" %>
+            </div>
+          <% end %>
+          <% if song.name.present? %>
+            <div class="col-md-6 d-flex flex-column justify-content-center">
+              <h5><%= link_to song.name, song %></h5>
+              <p><strong>Author:</strong> <%= song.user.full_name %></p>
+            </div>
+          <% end %>
+          <div class="col-md-3 d-flex align-items-center justify-content-end">
+            <a href="#" class="song-link btn btn-outline-primary" data-song-id="<%= song.id %>">
+              <h5 class="card-title">Play</h5>
+            </a>
+          </div>
+        </div>
+      </li>
+  <% end %>
+
+  <div class="mt-3">
+    <% if current_user == @user %>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-secondary mr-2" %>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-<%= form_with(model: song) do |form| %>
+<%= form_with(model: song, class: "mt-4", local: true) do |form| %>
   <% if song.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
 
       <ul>
@@ -11,31 +11,40 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter song name" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: "form-control", placeholder: "Enter song description" %>
   </div>
 
+  <div class="form-group">
+    <strong>Audio:</strong>
+    <div class="custom-file">
+      <%= form.file_field :mp3, id: 'audio-input', class: "custom-file-input", accept: 'audio/mpeg, audio/mp3' %>
+      <%= form.label :mp3, class: "custom-file-label", data: { browse: "Browse" } %>
+    </div>
+  </div>
 
-  <strong>Audio:</strong>
-  <%= form.file_field :mp3, id: 'file-input', accept: 'audio/mpeg, audio/mp3' %>
-  <br>
-  <strong>Image:</strong>
-  <%= form.file_field :image, id: 'file-input'%>
+  <div class="form-group">
+    <strong>Image:</strong>
+    <div class="custom-file">
+      <%= form.file_field :image, id: 'image-input', class: "custom-file-input", accept: "image/*" %>
+      <%= form.label :image, class: "custom-file-label", data: { browse: "Browse" } %>
+    </div>
+  </div>
 
   <%= form.hidden_field :user_id, value: song.user_id %>
 
-  <div>
-    <%= form.label :album_id, style: "display: block" %>
-    <%= form.collection_select :album_id, Album.all, :id, :name, prompt: "Brez albuma" %>
+  <div class="form-group">
+    <%= form.label :album_id %>
+    <%= form.collection_select :album_id, Album.all, :id, :name, { prompt: "Select an album" }, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="text-center">
+    <%= form.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>

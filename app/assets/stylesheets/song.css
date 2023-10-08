@@ -3,3 +3,17 @@
     height: 64px;
     border-radius: 10%;
 }
+
+
+.inline-buttons > * {
+  display: inline;
+  margin-right: 10px; 
+}
+
+.custom-list-group {
+  margin-bottom: -1px !important;
+}
+
+.card-text.text-right {
+  text-align: right;
+}

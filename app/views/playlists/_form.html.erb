@@ -1,6 +1,6 @@
-<%= form_with(model: playlist) do |form| %>
+<%= form_with(model: playlist, class: "mt-4") do |form| %>
   <% if playlist.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
 
       <ul>
@@ -11,18 +11,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter playlist name" %>
   </div>
 
-
-  <div>
-    <%= form.label :privacy, style: "display: block" %>
-    <%= form.check_box :privacy %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="text-center">
+    <%= form.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>
