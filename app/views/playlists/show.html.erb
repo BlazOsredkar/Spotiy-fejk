@@ -8,7 +8,9 @@
     <li>
       <%= song.name %>
       <%= button_to 'Remove from Playlist', remove_from_playlist_path(playlist_id: @playlist.id, song_id: song.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-
+      <a href="#" class="song-link btn btn-outline-primary mr-2" data-playlist-id="<%= @playlist.id %>" data-song-id="<%= song.id %>">
+        <h5 class="card-title">Play</h5>
+      </a>    
     </li>
   <% end %>
 </ul>
