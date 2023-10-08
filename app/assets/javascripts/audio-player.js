@@ -28,6 +28,8 @@ $(document).ready(function () {
     e.preventDefault();
     const songId = $(this).data("song-id");
     const playlistId = $(this).data("playlist-id");
+    console.log(songId);
+    console.log(playlistId);
     loadAndPlaySong(songId, playlistId);
   });
 

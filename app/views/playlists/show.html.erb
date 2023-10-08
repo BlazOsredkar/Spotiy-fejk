@@ -13,7 +13,7 @@
   <% end %>
 </ul>
 
-<a href="#" class="song-link btn btn-outline-primary mr-2" data-playlist-id="<%= @playlist.id %>">
+<a href="#" class="song-link btn btn-outline-primary mr-2" data-playlist-id="<%= @playlist.id %>" data-song-id="<%=@playlist.songs.first.try(:id) %>">
     <h5 class="card-title">Play</h5>
 </a>
 
