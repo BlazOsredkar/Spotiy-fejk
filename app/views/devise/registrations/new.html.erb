@@ -1,29 +1,76 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="main-container-login" > 
+    <div class="custom-container">
+        <div class="custom-header">
+            <h2>Sign up for Spoti-fejk</h2>
+        </div>
+        <div class="custom-form-container">
+            <% if devise_mapping.omniauthable? %>
+              <% resource_class.omniauth_providers.each do |provider| %>
+                <% if provider == :google_oauth2 %>
+                  <%= form_for "Login",
+                    url: omniauth_authorize_path(resource_name, provider),
+                    method: :post,
+                    data: { turbo: false } do |f| %>
+                    <%= button_tag(type: 'submit', class: 'login-google') do %>
+                      <img src="<%= asset_path('btn_login_google.svg') %>" alt="Google Sign-In" />
+                      Continue with Google
+                    <% end %>
+                  <% end %>
+                <% elsif provider == :facebook %>
+                  <%= form_for "Login",
+                    url: omniauth_authorize_path(resource_name, provider),
+                    method: :post,
+                    data: { turbo: false } do |f| %>
+                    <%= button_tag(type: 'submit', class: 'login-google') do %>
+                      <img src="<%= asset_path('facebook.svg') %>" alt="Facebook Sign-In" class="login-icons" />
+                      Continue with Facebook
+                    <% end %>
+                  <% end %>
+                <% elsif provider == :github %> <!-- Add this block for GitHub -->
+                  <%= form_for "Login",
+                    url: omniauth_authorize_path(resource_name, provider),
+                    method: :post,
+                    data: { turbo: false } do |f| %>
+                    <%= button_tag(type: 'submit', class: 'login-google') do %>
+                      <img src="<%= asset_path('github.svg') %>" alt="GitHub Sign-In" class="login-icons" />
+                      Continue with GitHub
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+            
+            <hr class="login-line">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <div class="custom-field">
+                    <%= f.label :email %>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "custom-input", placeholder: "Email" %>
+                </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+                <div class="custom-field">
+                    <%= f.label :password %>
+                    <%= f.password_field :password, autocomplete: "new-password", class: "custom-input", placeholder: "Password" %>
+                </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+                <div class="custom-field">
+                  <%= f.label :password_confirmation %>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: "custom-input", placeholder: "Password confirm" %>
+                </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+                <% if devise_mapping.rememberable? %>
+                    <div class="custom-remember-me">
+                        <%= f.check_box :remember_me, class: "custom-checkbox" %>
+                        <%= f.label :remember_me, class: "custom-label" %>
+                    </div>
+                <% end %>
 
-<%= render "devise/shared/links" %>
+                <div class="custom-actions">
+                    <%= f.submit "Sign up", class: "custom-button" %>
+                </div>
+            <% end %>
+        </div>
+
+    </div>
+</div>

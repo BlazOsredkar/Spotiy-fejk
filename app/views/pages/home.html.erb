@@ -87,42 +87,7 @@
             <p>Listen to tons of songs for free</p>
             <p>Search for any song, artist, album or playlist</p>
             <p>Make your own playlists</p>
-            <p>Easy to use, no extra fees required</p><% if params[:search] %>
-  <% if @search_results_available %>
-    <h1>Search Results</h1>
-
-    <h2>Songs</h2>
-    <ul>
-      <% @songs.each do |song| %>
-        <p>HEHE<p>
-        <li><%= link_to song.name, song_path(song) %></li>
-      <% end %>
-    </ul>
-
-    <h2>Albums</h2>
-    <ul>
-      <% @albums.each do |album| %>
-        <li><%= link_to album.name, album_path(album) %></li>
-      <% end %>
-    </ul>
-
-    <h2>Artists</h2>
-    <ul>
-      <% @artists.each do |artist| %>
-        <% if artist.user.isArtist %>
-          <li><%= link_to artist.name, user_path(artist.user) %></li>
-        <% end %>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>No results found for your search.</p>
-  <% end %>
-<% else %>
-  <%= form_tag(@home_path, method: "get", class: "form-inline mb-2") do %>
-    <%= text_field_tag(:search, params[:search], class: "form-control mr-sm-2", placeholder: "Search songs, albums, and artists") %>
-    <%= submit_tag("Search", class: "btn btn-outline-success my-2 my-sm-0") %>
-  <% end %>
-<% end %>
+            <p>Easy to use, no extra fees required</p>
 
             <%= link_to 'Sign up', new_user_registration_path, class: 'home-sign-up' %>
         </div>
