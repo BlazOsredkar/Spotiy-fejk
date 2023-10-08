@@ -57,7 +57,11 @@
           <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <div class="mr-auto">
-                    <%= image_tag url_for(user.avatar_url), class: "img-fluid-song", style:"width:32px !important; height:32px !important;" %>
+                    <% if user.avatar_url.present?%>
+                      <%= image_tag url_for(user.avatar_url), class: "img-fluid-song", style:"width:32px !important; height:32px !important;" %>
+                    <% else %>
+                      <%= image_tag "https://i.pravatar.cc/32?u=#{user.full_name}", style:"height:32px; width:32px; border-radius:30%;" %>
+                    <% end %>
                     <%= user.full_name %>
                   </div>
                   <div class="ml-2 inline-buttons">

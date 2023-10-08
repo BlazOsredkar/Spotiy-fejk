@@ -1,7 +1,11 @@
 <div class="container mt-5">
   
   <div class="mb-3">
-    <%= image_tag @user.avatar_url, class: "img-fluid rounded-circle", alt: "Artist Avatar",  style:"height:64px; width:64px; border-radius:50%;" %>
+    <% if @user.avatar_url.present?%>
+      <%= image_tag @user.avatar_url, class: "img-fluid rounded-circle", alt: "Artist Avatar",  style:"height:64px; width:64px; border-radius:30%;" %>
+    <% else %>
+      <%= image_tag "https://i.pravatar.cc/128?u=#{@user.full_name}", style:"height:64px; width:64px; border-radius:30%;" %>
+    <% end %>
   </div>
 
   <h1><%= @user.full_name %></h1>

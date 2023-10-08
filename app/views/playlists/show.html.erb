@@ -3,8 +3,8 @@
 
   <%= render @playlist %>
 
-  <a href="#" class="song-link btn btn-outline-primary mt-3" data-playlist-id="<%= @playlist.id %>" data-song-id="<%=@playlist.songs.first.try(:id) %>">
-    <h5 class="card-title">Play playlist</h5>
+  <a href="#" class="song-link btn btn-outline-primary mr-2" data-playlist-id="<%= @playlist.id %>" data-song-id="<%=@playlist.songs.first.try(:id) %>">
+    <h5 class="card-title">Play</h5>
   </a>
 
   <h4 class="mt-3">Songs in Playlist:</h4>
