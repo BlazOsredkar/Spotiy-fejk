@@ -9,6 +9,8 @@ $(document).ready(function () {
       // Set the source for the audio element
       audio.src = data.mp3_url;
 
+      audio.dataset.currentSongId = data.id;
+
       // Load and play the audio
       audio.load();
       audio.play();
@@ -37,7 +39,14 @@ $(document).ready(function () {
   });
 
   audio.addEventListener("ended", function () {
-    // Perform actions when the audio playback ends
-    console.log("Audio playback ended");
+    fetch("/songs/next_song?").then(
+      (
+        response // Fetch the next song
+      ) =>
+        response.json().then((data) => {
+          console.log(data);
+          loadAndPlaySong(data.id);
+        })
+    );
   });
 });

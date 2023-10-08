@@ -27,14 +27,6 @@ class SongsController < ApplicationController
     end
   end
 
-
-
-
-
-
-
-
-
   # GET /songs or /songs.json
   def index
     if params[:search]
@@ -57,6 +49,14 @@ class SongsController < ApplicationController
     else
       redirect_to root_path, notice:"Only Artists can do that."
     end
+  end
+
+  def next_song
+    #cho0ose random song
+    @song = Song.all.sample
+
+    #return json
+    render json: @song
   end
 
   # GET /songs/1/edit
