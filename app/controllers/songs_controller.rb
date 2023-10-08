@@ -52,11 +52,17 @@ class SongsController < ApplicationController
   end
 
   def next_song
-    #cho0ose random song
-    @song = Song.all.sample
-
-    #return json
-    render json: @song
+    if @playlist = Playlist.find(params[:playlist_id]) rescue nil
+      @song = @playlist.songs.find(params[:song_id]) rescue nil
+      @next_song = @playlist.songs.find_by('playlists_songs.position > ?', @song.playlist_songs.find_by(playlist: @playlist).position) rescue nil if @song
+      unless @next_song
+        @next_song = @playlist.songs.first
+      end
+    else
+      @song = Song.find(params[:song_id]) rescue nil
+      @next_song = Song.where.not(id: @song.id).sample
+    end
+    render json: @next_song
   end
 
   # GET /songs/1/edit

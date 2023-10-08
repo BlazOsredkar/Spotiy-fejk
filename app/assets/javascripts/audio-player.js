@@ -1,7 +1,10 @@
+const prevSongs = [];
+const nextSongs = [];
+
 // audio-player.js
 $(document).ready(function () {
   // Function to load and play a song
-  function loadAndPlaySong(songId) {
+  function loadAndPlaySong(songId, playlistId = null) {
     $.getJSON(`/songs/${songId}.json`, function (data) {
       // Get the existing audio element by its ID
       const audio = document.getElementById("audio-player");
@@ -10,6 +13,7 @@ $(document).ready(function () {
       audio.src = data.mp3_url;
 
       audio.dataset.currentSongId = data.id;
+      audio.dataset.currentPlaylistId = playlistId;
 
       // Load and play the audio
       audio.load();
@@ -23,7 +27,8 @@ $(document).ready(function () {
   $(".song-link").on("click", function (e) {
     e.preventDefault();
     const songId = $(this).data("song-id");
-    loadAndPlaySong(songId);
+    const playlistId = $(this).data("playlist-id");
+    loadAndPlaySong(songId, playlistId);
   });
 
   // Update custom controls when the audio playback status changes
@@ -39,14 +44,37 @@ $(document).ready(function () {
   });
 
   audio.addEventListener("ended", function () {
-    fetch("/songs/next_song?").then(
+    playNextSong();
+  });
+
+  function playNextSong() {
+    const currentSongId = audio.dataset.currentSongId;
+    const currentPlaylistId = audio.dataset.currentPlaylistId;
+
+    if (nextSongs.length > 0) {
+      const nextSongId = nextSongs.pop();
+      prevSongs.push(currentSongId);
+      loadAndPlaySong(nextSongId);
+      return;
+    }
+
+    fetch(
+      `/songs/next_song?song_id=${currentSongId}&playlist_id=${currentPlaylistId}`
+    ).then(
       (
         response // Fetch the next song
       ) =>
         response.json().then((data) => {
           console.log(data);
-          loadAndPlaySong(data.id);
+          loadAndPlaySong(data.id, currentPlaylistId);
         })
     );
-  });
+  }
+  function playPreviousSong() {
+    if (prevSongs.length > 0) {
+      const previousSongId = prevSongs.pop();
+      nextSongs.push(audio.dataset.currentSongId);
+      loadAndPlaySong(previousSongId);
+    }
+  }
 });

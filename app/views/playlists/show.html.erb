@@ -13,6 +13,10 @@
   <% end %>
 </ul>
 
+<a href="#" class="song-link btn btn-outline-primary mr-2" data-playlist-id="<%= @playlist.id %>">
+    <h5 class="card-title">Play</h5>
+</a>
+
 
 <div>
   <%= link_to "Edit this playlist", edit_playlist_path(@playlist) %> |

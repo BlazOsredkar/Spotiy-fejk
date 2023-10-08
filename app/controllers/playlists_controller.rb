@@ -72,6 +72,7 @@ class PlaylistsController < ApplicationController
     redirect_to playlist_path(@playlist), notice: 'Song removed from playlist successfully.'
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist
