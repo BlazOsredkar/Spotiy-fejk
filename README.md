@@ -8,7 +8,8 @@ A clone of the famous app Spotify for my school project. The app has basic funct
 - file upload to AWS S3,
 - Admin panel using **ActiveAdmin**
 
-<img width="1365" alt="Screenshot 2023-10-08 at 12 29 41" src="https://github.com/BlazOsredkar/Spoti-fejk/assets/91890538/312eac59-c4d9-4672-9606-e9f0d5063c12">
+<img width="1386" alt="image" src="https://github.com/BlazOsredkar/Spoti-fejk/assets/91890538/e298e0bf-a3ac-4a4d-ab94-971dba11f72f">
+
 
 <br>
 App home: https://www.spoti-fejk.vrtogo.si/
