@@ -15,7 +15,7 @@
   
     <% if user_signed_in? %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <%= javascript_include_tag 'audio-player' %>%= javascript_include_tag 'audio-player' %>
+    <%= javascript_include_tag 'audio-player' %>
     <!-- Include your audio player component -->
     <%= render partial='layouts/navbar'%>
     <div class="main-content-container">
@@ -25,6 +25,8 @@
     </div>
     <div class="footer-player">
       <span id="current-song-name"></span>
+      <a href="#" id="play-prev-song">Prev</a>
+      <a href="#" id="play-next-song">Next</a>
       <audio controls id="audio-player"></audio>
     </div>
     <% else %>

@@ -33,6 +33,16 @@ $(document).ready(function () {
     loadAndPlaySong(songId, playlistId);
   });
 
+  $("#play-prev-song").on("click", function (e) {
+    e.preventDefault();
+    playPreviousSong();
+  });
+
+  $("#play-next-song").on("click", function (e) {
+    e.preventDefault();
+    playNextSong();
+  });
+
   // Update custom controls when the audio playback status changes
   const audio = document.getElementById("audio-player");
   audio.addEventListener("play", function () {
@@ -52,10 +62,9 @@ $(document).ready(function () {
   function playNextSong() {
     const currentSongId = audio.dataset.currentSongId;
     const currentPlaylistId = audio.dataset.currentPlaylistId;
-
+    prevSongs.push(currentSongId);
     if (nextSongs.length > 0) {
       const nextSongId = nextSongs.pop();
-      prevSongs.push(currentSongId);
       loadAndPlaySong(nextSongId);
       return;
     }
