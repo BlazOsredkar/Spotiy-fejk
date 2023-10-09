@@ -11,11 +11,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="audio">
   
     <% if user_signed_in? %>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <%= javascript_include_tag 'audio-player' %>
     <!-- Include your audio player component -->
     <%= render partial='layouts/navbar'%>
     <div class="main-content-container">
@@ -23,11 +21,11 @@
           <%= yield %>
         </main>
     </div>
-    <div class="footer-player">
+    <div class="footer-player" >
       <span id="current-song-name"></span>
-      <a href="#" id="play-prev-song">Prev</a>
-      <a href="#" id="play-next-song">Next</a>
-      <audio controls id="audio-player"></audio>
+      <a href="#" id="play-prev-song" data-action="audio#playPreviousSong">Prev</a>
+      <a href="#" id="play-next-song" data-action="audio#playNextSong">Next</a>
+      <audio controls id="audio-player" data-audio-target="audioPlayer"></audio>
     </div>
     <% else %>
       <%= yield %>
