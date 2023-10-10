@@ -28,9 +28,7 @@
             </div>
           <% end %>
           <div class="col-md-3 d-flex align-items-center justify-content-end">
-            <a href="#" class="song-link btn btn-outline-primary" data-song-id="<%= song.id %>">
-              <h5 class="card-title">Play</h5>
-            </a>
+            <h5 class="card-title song-link btn btn-outline-primary ml-2" data-song-id="<%= song.id %>" data-action="click->audio#playSong">Play</h5>
           </div>
         </div>
       </li>
