@@ -3,7 +3,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["audioPlayer"];
+  static targets = ["audioPlayer", "songName", "songAuthor"];
 
   initialize() {
     this.prevSongs = [];
@@ -26,6 +26,10 @@ export default class extends Controller {
         this.audioPlayerTarget.dataset.currentPlaylistId = playlistId;
         this.audioPlayerTarget.load();
         this.audioPlayerTarget.play();
+        this.songNameTarget.innerText = data.name;
+        this.songNameTarget.href = `/songs/${data.id}`;
+        this.songAuthorTarget.innerText = data.user_full_name;
+        this.songAuthorTarget.href = `/artists/${data.user_id}`;
       });
   }
 
